@@ -20,6 +20,12 @@ class BackblogController extends Controller
         $store->text = $request->text;
         $store->img = $request->img;
         $store->save();
-        return redirect('/backoffice/blog')->with('message', 'Your content was added successfully !');
+        return redirect('/backoffice/blog')->with('addmessage', 'Your content was added successfully !');
+    }
+
+    public function destroy($id){
+        $destroy = Backblog::find($id);
+        $destroy->delete();
+        return redirect('/backoffice/blog')->with('deletemessage', 'Your content was deleted successfully !');
     }
 }

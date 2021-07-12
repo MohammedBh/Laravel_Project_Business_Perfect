@@ -20,6 +20,12 @@ class BackhomeController extends Controller
         $store->text = $request->text;
         $store->icon = $request->icon;
         $store->save();
-        return redirect('/backoffice/home')->with('message', 'Your content was added successfully !');
+        return redirect('/backoffice/home')->with('addmessage', 'Your content was added successfully !');
+    }
+
+    public function destroy($id){
+        $destroy = Backhome::find($id);
+        $destroy->delete();
+        return redirect('/backoffice/home')->with('deletemessage', 'Your content was deleted successfully !');
     }
 }

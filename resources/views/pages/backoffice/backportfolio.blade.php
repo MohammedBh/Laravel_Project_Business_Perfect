@@ -2,8 +2,10 @@
 @section('content')
     {{-- FORMULAIRE D'AJOUT --}}
     <section>
-        @if (session('message'))
-            <div class="container w-50 mt-5 alert alert-success">{{ session('message') }}</div>
+        @if (session('addmessage'))
+            <div class="container w-50 mt-5 alert alert-success">{{ session('addmessage') }}</div>
+        @elseif (session('deletemessage'))
+            <div class="container w-50 mt-5 alert alert-success">{{ session('deletemessage') }}</div>
         @endif
         <h2 class="text-center my-5">Portfolio Edit</h2>
         <form class="container mt-5 w-50" action="/backoffice/postbackportfolio" method="POST">
@@ -48,6 +50,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Text</th>
                     <th scope="col">Image</th>
+                    <th scope="col">Function</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +60,14 @@
                         <td>{{ $backportfolio->title }}</td>
                         <td>{{ $backportfolio->text }}</td>
                         <td><img style="height: 30px" src="{{ asset('img/' . $backportfolio->img) }}" alt=""></td>
+                        <td>
+                            <form action="/backportfoliodelete/{{ $backportfolio->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="border-0 rounded py-1 px-2 bg-danger text-white"
+                                    type="submit">DELETE</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

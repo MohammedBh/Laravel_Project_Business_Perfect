@@ -20,6 +20,13 @@ class BackportfolioController extends Controller
         $store->text = $request->text;
         $store->img = $request->img;
         $store->save();
-        return redirect('/backoffice/portfolio')->with('message', 'Your content was added successfully !');
+        return redirect('/backoffice/portfolio')->with('addmessage', 'Your content was added successfully !');
+    }
+
+    public function destroy($id)
+    {
+        $destroy = Backportfolio::find($id);
+        $destroy->delete();
+        return redirect('/backoffice/portfolio')->with('deletemessage', 'Your content was deleted successfully !');
     }
 }

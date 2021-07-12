@@ -38,10 +38,13 @@ Route::get('/backoffice', [BackofficeController::class, 'index'])->name('backoff
 
 Route::get('/backoffice/home', [BackhomeController::class, 'index'])->name('backhome');
 Route::post('/backoffice/postbackhome', [BackhomeController::class, 'store']);
+Route::delete('/backhomedelete/{id}', [BackhomeController::class, 'destroy']);
 
 Route::get('/backoffice/blog', [BackblogController::class, 'index'])->name('backblog');
 Route::post('/backoffice/postbackblog', [BackblogController::class, 'store']);
+Route::delete('/backblogdelete/{id}', [BackblogController::class, 'destroy']);
 
 
 Route::get('/backoffice/portfolio', [BackportfolioController::class, 'index'])->name('backportfolio');
 Route::post('/backoffice/postbackportfolio', [BackportfolioController::class, 'store']);
+Route::delete('/backportfoliodelete/{id}', [BackportfolioController::class, 'destroy']);
